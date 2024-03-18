@@ -11,7 +11,9 @@ from tkinter import ttk
 class MyApp:
     def item_selected(self, event):
         for selected_item in self.table.selection():
-            print(self.table.item(selected_item)['values'])
+            print(self.table.item(selected_item)["values"])
+            #self.generateInfo(self.table.item(selected_item)["values"], root)
+        
     def onButtonSaveFormClick(self):
         print("Save button clicked")
     def onButtonResetFormClick(self):
@@ -19,34 +21,56 @@ class MyApp:
     def createFormWindow(self, root):
         self.formWindow = Toplevel(root)
         self.formWindow.geometry("300x300")
-        self.formFrame = Frame(self.formWindow, bd = 5)
+        self.formFrame = ttk.Frame(self.formWindow, borderwidth = 5)
         
-        self.nameLabel = Label(self.formFrame, text="Název školy: ", padx=5)
+        self.nameLabel = ttk.Label(self.formFrame, text="Název školy: ")
         self.nameLabel.grid(row = 0, column = 0)
-        self.nameEntry = Entry(self.formFrame)
+        self.nameEntry = ttk.Entry(self.formFrame)
         self.nameEntry.grid(row = 0, column = 1)
         
-        self.streetLabel = Label(self.formFrame, text="Ulice: ", padx=5)
+        self.streetLabel = ttk.Label(self.formFrame, text="Ulice: ")
         self.streetLabel.grid(row = 1, column = 0)
-        self.streetEntry = Entry(self.formFrame)
+        self.streetEntry = ttk.Entry(self.formFrame)
         self.streetEntry.grid(row = 1, column = 1)
         
-        self.cityLabel = Label(self.formFrame, text="Město: ", padx=5)
+        self.cityLabel = ttk.Label(self.formFrame, text="Město: ")
         self.cityLabel.grid(row = 2, column = 0)
-        self.cityEntry = Entry(self.formFrame)
+        self.cityEntry = ttk.Entry(self.formFrame)
         self.cityEntry.grid(row = 2, column = 1)
         
-        self.pscLabel = Label(self.formFrame, text="PSČ: ", padx=5)
+        self.pscLabel = ttk.Label(self.formFrame, text="PSČ: ")
         self.pscLabel.grid(row = 3, column = 0)
-        self.pscEntry = Entry(self.formFrame)
+        self.pscEntry = ttk.Entry(self.formFrame)
         self.pscEntry.grid(row = 3, column = 1)
         
-        self.resetFormBtn = Button(self.formFrame, text = "Vymazat formulář", command=self.onButtonResetFormClick)
+        self.btnFrame = ttk.Frame(self.formWindow, borderwidth=5)
+        self.resetFormBtn = ttk.Button(self.btnFrame, text = "Vymazat formulář", command=self.onButtonResetFormClick)
         self.resetFormBtn.grid(row = 4, column = 0)
-        self.saveFormBtn = Button(self.formFrame, text = "Uložit záznam", command=self.onButtonSaveFormClick)
+        self.saveFormBtn = ttk.Button(self.btnFrame, text = "Uložit záznam", command=self.onButtonSaveFormClick)
         self.saveFormBtn.grid(row = 4, column = 1)
         
         self.formFrame.pack(side="top")
+        self.btnFrame.pack(side="bottom")
+        self.formWindow.grab_set()
+    def generateInfo(self, info, root):
+        if(len(info) == 4):
+            counter = 0
+            for element in info:
+                label = ttk.Label(self.infoFrame, text="Název: ")
+                entry = ttk.Entry(self.infoFrame, text=element)
+                label.grid(row = counter, column = 0)
+                entry.grid(row = counter, column= 1)
+    def switchFrames(index):
+        if(index == 0):
+            self.infoFrameHS
+        else:
+            self.infoFrameAF
+    def get_selected_notebook(self, event):
+      # Get the index of the currently selected tab (zero-based)
+      self.selected_index = self.notebook.index("current")
+      
+      # Access the tab title using the index (optional)
+      selected_tab_title = self.notebook.tab(selected_index, "text")
     def __init__(self, root):
         root.geometry("850x500")
         root.title('Administrace')
@@ -58,14 +82,17 @@ class MyApp:
         self.notebook = ttk.Notebook(root)
         self.notebook.pack()
 
-        self.highschools = ttk.Frame(self.notebook, width=850, height=500)
-        self.applications = ttk.Frame(self.notebook, width=850, height=500)
+        self.highschools = ttk.Frame(self.notebook, width=400, height=200)
+        self.applications = ttk.Frame(self.notebook, width=400, height=200)
 
         self.notebook.add(self.highschools, text='High schools')
         self.notebook.add(self.applications, text='Application Forms')
+        self.notebook.bind("<ButtonRelease-1>", self.get_selected_notebook)
+        #Search bar part
+        self.searchEntry = ttk.Entry(self.highschools, text="Název školy: ")
         
         #Table part - Highschool
-        self.tableFrame = Frame(self.highschools,bd = 5)
+        self.tableFrame = ttk.Frame(self.highschools,borderwidth= 5)
         self.table = ttk.Treeview(self.tableFrame, columns=('name', 'street', 'city', 'psc'), 
                             show='headings')
 
@@ -93,11 +120,22 @@ class MyApp:
         root.config(menu=self.menubar)
         
         #Form part
-        self.controlFrame = Frame(self.highschools, bd = 5)
-        self.insertButton = Button(self.controlFrame, text="Nový záznam", command=lambda: self.createFormWindow(root))
-        self.insertButton.grid(row = 0, column = 0)
-        self.controlFrame.pack(side="left", anchor="n")
+        self.bottomPartFrame = ttk.Frame(root)
+        self.infoFrameHS = ttk.Frame(self.bottomPartFrame)
+        for i in range(0,4):
+            label = ttk.Label(self.infoFrameHS, text="Název: ")
+            entry = ttk.Entry(self.infoFrameHS, text="")
+            label.grid(row = i, column = 0)
+            entry.grid(row = i, column= 1)
+        self.infoFrameAF = ttk.Frame(self.bottomPartFrame)
         
+        self.controlFrame = ttk.Frame(self.bottomPartFrame, borderwidth = 5)
+        self.insertButton = ttk.Button(self.controlFrame, text="Nový záznam", command=lambda: self.createFormWindow(root))
+        self.insertButton.grid(row = 0, column = 0)
+        self.controlFrame.pack(side="left", anchor="nw")
+        self.infoFrameHS.pack(side="right", anchor="ne")
+        self.bottomPartFrame.pack()
+        #self.formWindow.grab_set()
 root = Tk()
 myApp = MyApp(root)
 root.mainloop()
