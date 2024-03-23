@@ -7,10 +7,14 @@ Created on Sun Mar 10 21:44:08 2024
 from tkinter import *
 import tkinter.font
 from tkinter import ttk
+from tkcalendar import DateEntry
+from ttkthemes import ThemedTk
+from PIL import Image, ImageTk
 
 class MyApp:
     def item_selected(self, event):
         for selected_item in self.table.selection():
+            self.showImage("school", self.table.item(selected_item)["values"][3])
             print(self.table.item(selected_item)["values"])
             #self.generateInfo(self.table.item(selected_item)["values"], root)
         
@@ -88,8 +92,24 @@ class MyApp:
             self.searchSchoolEntry = ttk.Entry(self.searchOptionsFrame)
             self.searchSchoolEntry.grid(row = 2, column = 1)
             self.deleteOptions = True
+    def showImage(self, target, value):
+        self.image_label.destroy()
+        image_path = "./no_image.png"
+        if(target == "school"):
+            if(value == "SPSEI Ostrava"):
+                image_path = "./spsei_logo.jpg"
+            elif(value == "Telekomka Ostrava"):
+                image_path = "./telekom.png"
+        elif(target == "student"):
+            pass
+        
+        img = Image.open(image_path)
+        resized_img = img.resize((200, 100))  # Resize image (optional)
+        self.img_tk = ImageTk.PhotoImage(resized_img if resized_img else img)
+        self.image_label = ttk.Label(self.ImageFrameStudent, image=self.img_tk)
+        self.image_label.grid(row = 3, column = 2, sticky="e")
     def __init__(self, root):
-        root.geometry("850x500")
+        root.geometry("850x600")
         root.title('Administrace')
         #root.resizable(False, False)     
         def_font = tkinter.font.nametofont("TkDefaultFont")
@@ -154,27 +174,70 @@ class MyApp:
         self.bottomPartFrame = ttk.Frame(root)
         self.notebook = ttk.Notebook(root)
         self.notebook.pack(fill="both", expand=True)
+        #Application Form info part
         self.infoFrameAF = ttk.Frame(self.notebook, width=400, height=200)
-        self.AFLabelNumber = ttk.Label(self.infoFrameAF, text="Číslo přihlášky")
-        self.AFLabelNumber.grid(row = 0, column = 0)
-
-        self.infoFrameStudent = ttk.Frame(self.notebook, width=400, height=200)
-        self.SLabelNumber = ttk.Label(self.infoFrameStudent, text="Jméno studenta")
-        self.SLabelNumber.grid(row = 0, column = 0)
+        self.AFLabelNumber = ttk.Label(self.infoFrameAF, text="Číslo přihlášky:")
+        self.AFLabelNumber.grid(row = 0, column = 0, padx=5, sticky="w")
+        self.AFEntryNumber = ttk.Entry(self.infoFrameAF, text="", width=5)
+        self.AFEntryNumber.grid(row = 0, column = 1, sticky="w")
+        self.AFLabelDate = ttk.Label(self.infoFrameAF, text="Datum podání:")
+        self.AFLabelDate.grid(row = 1, column = 0, padx=5, sticky="w")
+        #self.AFDateEntryDate = DateEntry(self.infoFrameAF, text="")
+        self.AFEntryDate = ttk.Entry(self.infoFrameAF, text="")
+        self.AFEntryDate.grid(row = 1, column = 1)
+        self.AFLabelStudent = ttk.Label(self.infoFrameAF, text="Jméno studenta:")
+        self.AFLabelStudent.grid(row = 2, column = 0, padx=5, sticky="w")
+        self.AFEntryStudent = ttk.Entry(self.infoFrameAF, text="")
+        self.AFEntryStudent.grid(row = 2, column = 1)
+        self.AFLabelSchool = ttk.Label(self.infoFrameAF, text="Název školy:")
+        self.AFLabelSchool.grid(row = 3, column = 0, padx = 5, sticky="w")
+        self.AFEntrySchool = ttk.Entry(self.infoFrameAF, text="")
+        self.AFEntrySchool.grid(row = 3, column = 1)
+        
+        #Student part
+        self.infoFrameStudentDiv = ttk.Frame(self.notebook, width=400, height=200) 
+        self.infoFrameStudent = ttk.Frame(self.infoFrameStudentDiv)
+        self.SLabelName = ttk.Label(self.infoFrameStudent, text="Jméno studenta:")
+        self.SLabelName.grid(row = 0, column = 0, padx=5, sticky="w")
+        self.SEntryName = ttk.Entry(self.infoFrameStudent, text="")
+        self.SEntryName.grid(row = 0, column = 1)
+        self.SLabelGender = ttk.Label(self.infoFrameStudent, text="Pohlaví:")
+        self.SLabelGender.grid(row = 1, column = 0, padx=5, sticky="w")
+        self.SEntryGender = ttk.Entry(self.infoFrameStudent, text="", width=3)
+        self.SEntryGender.grid(row = 1, column = 1, sticky="w")
+        self.SLabelStreet = ttk.Label(self.infoFrameStudent, text="Ulice: ")
+        self.SLabelStreet.grid(row = 2, column = 0, padx=5, sticky="w")
+        self.SEntryStreet = ttk.Entry(self.infoFrameStudent, text="")
+        self.SEntryStreet.grid(row = 2, column = 1, sticky="w")
+        self.infoFrameStudent.pack(side="left", fill="both", expand=True)
+        self.ImageFrameStudent = ttk.Frame(self.infoFrameStudentDiv)
+        image_path = "./no_image.png"
+        img = Image.open(image_path)
+        resized_img = img.resize((200, 100))  # Resize image (optional)
+        self.img_tk = ImageTk.PhotoImage(resized_img if resized_img else img)
+        self.image_label = ttk.Label(self.ImageFrameStudent, image=self.img_tk)
+        self.image_label.grid(row = 3, column = 2, sticky="e")
+        self.ImageFrameStudent.pack(side="left", fill="both", padx=5)
         self.infoFrameHS = ttk.Frame(self.notebook, width=400, height=200)
         self.HSLabelNumber = ttk.Label(self.infoFrameHS, text="Název školy")
         self.HSLabelNumber.grid(row = 0, column = 0)
         
+        
         self.notebook.add(self.infoFrameAF, text='Podrobnosti')
-        self.notebook.add(self.infoFrameStudent, text='Student')
+        self.notebook.add(self.infoFrameStudentDiv, text='Student')
         self.notebook.add(self.infoFrameHS, text='Škola')
         
         self.controlFrame = ttk.Frame(self.bottomPartFrame, borderwidth = 5)
-        self.insertButton = ttk.Button(self.controlFrame, text="Nový záznam", command=lambda: self.createFormWindow(root))
+        self.insertButton = ttk.Button(self.controlFrame, text="Přidat", command=lambda: self.createFormWindow(root))
         self.insertButton.grid(row = 0, column = 0)
+        self.editButton = ttk.Button(self.controlFrame, text="Upravit")
+        self.editButton.grid(row = 0, column = 1)
+        self.deleteButton = ttk.Button(self.controlFrame, text="Odstranit")
+        self.deleteButton.grid(row = 0, column = 2)
         self.controlFrame.pack(side="left", anchor="w", fill="both", expand=True)
         self.bottomPartFrame.pack(side = "bottom")
         #self.formWindow.grab_set()
-root = Tk()
+#root = Tk()
+root = ThemedTk(theme="yaru")
 myApp = MyApp(root)
 root.mainloop()
