@@ -7,17 +7,19 @@ Created on Sun Mar 10 21:44:08 2024
 from tkinter import *
 import tkinter.font
 from tkinter import ttk
-from tkcalendar import DateEntry
 from ttkthemes import ThemedTk
 from PIL import Image, ImageTk
-
+#TODO:
+#Zbývá udělat přidání, editaci a delete záznamů a search, to by bylo super, možná dát všechny záznamy do listu a pak je až přidávat a ten list by se mohl upravovat?
 class MyApp:
     def item_selected(self, event):
         for selected_item in self.table.selection():
             self.showImage("school", self.table.item(selected_item)["values"][3])
             print(self.table.item(selected_item)["values"])
             #self.generateInfo(self.table.item(selected_item)["values"], root)
-        
+            self.filloutStudent(self.table.item(selected_item)["values"][2], self.table.item(selected_item)["values"])
+            self.filloutSchool(self.table.item(selected_item)["values"][3], self.table.item(selected_item)["values"])
+            self.filloutBasicInfo(self.table.item(selected_item)["values"])
     def onButtonSaveFormClick(self):
         print("Save button clicked")
     def onButtonResetFormClick(self):
@@ -27,22 +29,22 @@ class MyApp:
         self.formWindow.geometry("300x300")
         self.formFrame = ttk.Frame(self.formWindow, borderwidth = 5)
         
-        self.nameLabel = ttk.Label(self.formFrame, text="Název školy: ")
+        self.nameLabel = ttk.Label(self.formFrame, text="Číslo přihlášky: ")
         self.nameLabel.grid(row = 0, column = 0)
-        self.nameEntry = ttk.Entry(self.formFrame)
-        self.nameEntry.grid(row = 0, column = 1)
+        self.nameEntry = ttk.Entry(self.formFrame, width=5)
+        self.nameEntry.grid(row = 0, column = 1,  sticky = "w")
         
-        self.streetLabel = ttk.Label(self.formFrame, text="Ulice: ")
+        self.streetLabel = ttk.Label(self.formFrame, text="Datum podání: ")
         self.streetLabel.grid(row = 1, column = 0)
         self.streetEntry = ttk.Entry(self.formFrame)
         self.streetEntry.grid(row = 1, column = 1)
         
-        self.cityLabel = ttk.Label(self.formFrame, text="Město: ")
+        self.cityLabel = ttk.Label(self.formFrame, text="Jméno studenta: ")
         self.cityLabel.grid(row = 2, column = 0)
         self.cityEntry = ttk.Entry(self.formFrame)
         self.cityEntry.grid(row = 2, column = 1)
         
-        self.pscLabel = ttk.Label(self.formFrame, text="PSČ: ")
+        self.pscLabel = ttk.Label(self.formFrame, text="Název školy: ")
         self.pscLabel.grid(row = 3, column = 0)
         self.pscEntry = ttk.Entry(self.formFrame)
         self.pscEntry.grid(row = 3, column = 1)
@@ -101,6 +103,7 @@ class MyApp:
             elif(value == "Telekomka Ostrava"):
                 image_path = "./telekom.png"
         elif(target == "student"):
+            image_path = "./student.png"
             pass
         
         img = Image.open(image_path)
@@ -108,6 +111,52 @@ class MyApp:
         self.img_tk = ImageTk.PhotoImage(resized_img if resized_img else img)
         self.image_label = ttk.Label(self.ImageFrameStudent, image=self.img_tk)
         self.image_label.grid(row = 3, column = 2, sticky="e")
+    def filloutStudent(self, target, values):
+        Name, gender, street = "", "", ""
+        if(target == "Jiří Matonoha"):
+            Name, gender, street = "Jiří Matonoha", "M", "Francouzská 1102/16 Kopřivnice"
+        elif(target == "Ivan Mámdlouhéjméno Matuška"):
+            Name, gender, street = "Ivan Mámdlouhéjméno Matuška", "M", "Palackého 741/10 Ostrava"
+        self.SEntryName.delete(0,END)
+        self.SEntryName.insert(0,Name)
+        self.SEntryGender.delete(0,END)
+        self.SEntryGender.insert(0,gender)
+        self.SEntryStreet.delete(0,END)
+        self.SEntryStreet.insert(0,street)
+        pass
+    def filloutSchool(self, target, values):
+        Name, Prestige, Type, Focus = "", 0, "", ""
+        if(target == "SPSEI Ostrava"):
+            Name, Prestige, Type, Focus = "SPSEI Ostrava", 1, "SPS", "P"
+        elif(target == "Telekomka Ostrava"):
+            Name, Prestige, Type, Focus = "Telekomka Ostrava", 0, "SPS", "H"
+        self.HSEntryName.delete(0,END)
+        self.HSEntryName.insert(0,Name)
+        self.CheckValue.set(Prestige)
+        match Type:
+            case "SPS":
+                self.OptionValue.set("Střední průmyslová škola")
+            case "GYM":
+                self.OptionValue.set("Gymnázium")
+        match Focus:
+            case "P":
+                self.RadioValue.set(1)
+            case "T":
+                self.RadioValue.set(2)
+            case "H":
+                self.RadioValue.set(3)
+        pass
+    def filloutBasicInfo(self, values):
+        self.AFEntryNumber.delete(0,END)
+        self.AFEntryNumber.insert(0,values[0])
+        self.AFEntryDate.delete(0,END)
+        self.AFEntryDate.insert(0,values[1])
+        self.AFEntryStudent.delete(0,END)
+        self.AFEntryStudent.insert(0,values[2])
+        self.AFEntrySchool.delete(0,END)
+        self.AFEntrySchool.insert(0,values[3])
+    def cleanEntry(self, entry):
+        entry.delete(0, END)
     def __init__(self, root):
         root.geometry("850x600")
         root.title('Administrace')
@@ -119,19 +168,20 @@ class MyApp:
         
 
         self.searchFrame = ttk.Frame(root)
-        self.searchResetBtn = ttk.Button(self.searchFrame, text="Reset")
+        self.searchResetBtn = ttk.Button(self.searchFrame, text="Reset", command=lambda: self.cleanEntry(self.searchEntry))
         self.searchResetBtn.pack(side="right", padx=10)
         self.searchBtn = ttk.Button(self.searchFrame, text="Vyhledej")
         self.searchBtn.pack(side="right", padx = 10)
         self.searchOptionsFrame = ttk.Frame(self.searchFrame)
         self.searchEntry = ttk.Entry(self.searchOptionsFrame, text="", width=5)
-        self.searchEntry.grid(row = 0, column = 1, sticky="w")
+        self.searchEntry.grid(row = 0, column = 1, sticky="w", padx=5)
         self.searchLabel = ttk.Label(self.searchOptionsFrame, text="Číslo přihlášky:")
         self.searchLabel.grid(row = 0, column = 0)
-        self.searchOptionsFrame.pack(side = "right")
         self.expandSearchBtn = ttk.Button(self.searchFrame, text="Více", width=5, command=self.expandSearch)
         self.deleteOptions = False
         self.expandSearchBtn.pack(side = "right", padx=5)
+        self.searchOptionsFrame.pack(side = "right")
+        
         self.searchFrame.pack(fill="both", pady=20)
         self.applications = ttk.Frame(root, width=400, height=200)
         self.applications.pack()
@@ -148,11 +198,25 @@ class MyApp:
 
         self.table.heading('cp', text='Číslo přihlášky')
         self.table.heading('datum_podani', text='Datum podání')
-        self.table.heading('jmeno_studenta', text='Jméno Studenta')
+        self.table.heading('jmeno_studenta', text='Jméno studenta')
         self.table.heading('jmeno_skoly', text='Název školy')
 
         self.table.insert('', END, values=("001", "18/03/2024", "Jiří Matonoha", "SPSEI Ostrava"))
-        self.table.insert('', END, values=("002", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("002", "18/03/2024", "Ivan Mámdlouhéjméno Matuška","Telekomka Ostrava"))
+        self.table.insert('', END, values=("003", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("004", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("005", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("006", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("007", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("008", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("009", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("010", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("011", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("012", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("013", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("014", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("015", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        
         self.table.bind('<<TreeviewSelect>>', self.item_selected)
         self.table.grid(row=0, column=0, sticky='nsew')
 
@@ -205,7 +269,7 @@ class MyApp:
         self.SLabelGender.grid(row = 1, column = 0, padx=5, sticky="w")
         self.SEntryGender = ttk.Entry(self.infoFrameStudent, text="", width=3)
         self.SEntryGender.grid(row = 1, column = 1, sticky="w")
-        self.SLabelStreet = ttk.Label(self.infoFrameStudent, text="Ulice: ")
+        self.SLabelStreet = ttk.Label(self.infoFrameStudent, text="Adresa: ")
         self.SLabelStreet.grid(row = 2, column = 0, padx=5, sticky="w")
         self.SEntryStreet = ttk.Entry(self.infoFrameStudent, text="")
         self.SEntryStreet.grid(row = 2, column = 1, sticky="w")
@@ -216,13 +280,32 @@ class MyApp:
         resized_img = img.resize((200, 100))  # Resize image (optional)
         self.img_tk = ImageTk.PhotoImage(resized_img if resized_img else img)
         self.image_label = ttk.Label(self.ImageFrameStudent, image=self.img_tk)
-        self.image_label.grid(row = 3, column = 2, sticky="e")
+        self.image_label.grid(row = 3, column = 4, sticky="e")
         self.ImageFrameStudent.pack(side="left", fill="both", padx=5)
+        self.CheckValue = BooleanVar()
         self.infoFrameHS = ttk.Frame(self.notebook, width=400, height=200)
-        self.HSLabelNumber = ttk.Label(self.infoFrameHS, text="Název školy")
-        self.HSLabelNumber.grid(row = 0, column = 0)
-        
-        
+        self.HSLabelName = ttk.Label(self.infoFrameHS, text="Název školy")
+        self.HSLabelName.grid(row = 0, column = 0)
+        self.HSEntryName = ttk.Entry(self.infoFrameHS, text="")
+        self.HSEntryName.grid(row = 0, column = 1, sticky="w")
+        self.HSHasPrestigeLabel = ttk.Label(self.infoFrameHS, text="Má prestiž")
+        self.HSHasPrestigeLabel.grid(row = 1, column = 0)
+        self.HSHasPrestigeCheck = ttk.Checkbutton(self.infoFrameHS, onvalue=1, offvalue=0, variable=self.CheckValue)
+        self.HSHasPrestigeCheck.grid(row = 1, column = 1, sticky="w")
+        self.OptionValue = IntVar()
+        self.RadioValue = IntVar()
+        self.HSSchoolTypeLabel = ttk.Label(self.infoFrameHS, text="Typ školy")
+        self.HSSchoolTypeLabel.grid(row = 2, column = 0)
+        self.HSSchoolType = ttk.OptionMenu(self.infoFrameHS, self.OptionValue, "Gymnázium", "Gymnázium", "Střední průmyslová škola")
+        self.HSSchoolType.grid(row = 2, column = 1, sticky="w")
+        self.HSFocusLabel = ttk.Label(self.infoFrameHS, text="Zaměření")
+        self.HSFocusLabel.grid(row = 3, column = 0)
+        self.HSFocusRadio1 = ttk.Radiobutton(self.infoFrameHS, text="Praktické", value=1, variable=self.RadioValue)
+        self.HSFocusRadio2 = ttk.Radiobutton(self.infoFrameHS, text="Teoretické", value=2, variable=self.RadioValue)
+        self.HSFocusRadio3 = ttk.Radiobutton(self.infoFrameHS, text="Hybrid", value=3, variable=self.RadioValue)
+        self.HSFocusRadio1.grid(row = 3, column = 1, sticky="w")
+        self.HSFocusRadio2.grid(row = 4, column = 1, sticky="w")
+        self.HSFocusRadio3.grid(row = 5, column = 1, sticky="w")
         self.notebook.add(self.infoFrameAF, text='Podrobnosti')
         self.notebook.add(self.infoFrameStudentDiv, text='Student')
         self.notebook.add(self.infoFrameHS, text='Škola')
