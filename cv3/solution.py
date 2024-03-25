@@ -88,11 +88,11 @@ class MyApp:
             self.searchStudentLabel = ttk.Label(self.searchOptionsFrame, text="Jméno studenta:")
             self.searchStudentLabel.grid(row = 1, column = 0)
             self.searchStudentEntry = ttk.Entry(self.searchOptionsFrame)
-            self.searchStudentEntry.grid(row = 1, column = 1)
+            self.searchStudentEntry.grid(row = 1, column = 1, padx=5)
             self.searchSchoolLabel = ttk.Label(self.searchOptionsFrame, text="Jméno školy:")
             self.searchSchoolLabel.grid(row = 2, column = 0)
             self.searchSchoolEntry = ttk.Entry(self.searchOptionsFrame)
-            self.searchSchoolEntry.grid(row = 2, column = 1)
+            self.searchSchoolEntry.grid(row = 2, column = 1, padx=5)
             self.deleteOptions = True
     def showImage(self, target, value):
         self.image_label.destroy()
@@ -157,11 +157,21 @@ class MyApp:
         self.AFEntrySchool.insert(0,values[3])
     def cleanEntry(self, entry):
         entry.delete(0, END)
-    def searchApplication(self, number, date = "", student = "", school=""):
+    def searchApplication(self, numberEntry, studentEntry, schoolEntry):
         applications = []
+        number = numberEntry.get()
+        advanced = False
+        if(studentEntry.winfo_exists()):
+            student = studentEntry.get()
+            school = schoolEntry.get()
+            advanced = True
         for entry in self.table.get_children():
-            if(self.table.item(entry)["values"][0] == int(number)):
-                applications.append(entry)
+            if(advanced):
+                if(self.table.item(entry)["values"][0] == int(number) and self.table.item(entry)["values"][2] == student and self.table.item(entry)["values"][3] == school):
+                    applications.append(entry)
+            else:
+                if(self.table.item(entry)["values"][0] == int(number)):
+                    applications.append(entry)
         self.table.selection_set(applications)
         pass
     def __init__(self, root):
@@ -177,15 +187,18 @@ class MyApp:
         self.searchFrame = ttk.Frame(root)
         self.searchResetBtn = ttk.Button(self.searchFrame, text="Reset", command=lambda: self.cleanEntry(self.searchEntry))
         self.searchResetBtn.pack(side="right", padx=10)
-        self.searchBtn = ttk.Button(self.searchFrame, text="Vyhledej", command=lambda: self.searchApplication(self.searchEntry.get()))
-        self.searchBtn.pack(side="right", padx = 10)
         self.searchOptionsFrame = ttk.Frame(self.searchFrame)
+        self.deleteOptions = False
+        self.expandSearch()
+        self.expandSearch()
+        self.searchBtn = ttk.Button(self.searchFrame, text="Vyhledej", command=lambda: self.searchApplication(self.searchEntry, self.searchStudentEntry, self.searchSchoolEntry))
+        self.searchBtn.pack(side="right", padx = 10)
+        
         self.searchEntry = ttk.Entry(self.searchOptionsFrame, text="", width=5)
         self.searchEntry.grid(row = 0, column = 1, sticky="w", padx=5)
         self.searchLabel = ttk.Label(self.searchOptionsFrame, text="Číslo přihlášky:")
         self.searchLabel.grid(row = 0, column = 0)
         self.expandSearchBtn = ttk.Button(self.searchFrame, text="Více", width=5, command=self.expandSearch)
-        self.deleteOptions = False
         self.expandSearchBtn.pack(side = "right", padx=5)
         self.searchOptionsFrame.pack(side = "right")
         
