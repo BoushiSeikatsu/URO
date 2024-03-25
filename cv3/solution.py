@@ -157,6 +157,13 @@ class MyApp:
         self.AFEntrySchool.insert(0,values[3])
     def cleanEntry(self, entry):
         entry.delete(0, END)
+    def searchApplication(self, number, date = "", student = "", school=""):
+        applications = []
+        for entry in self.table.get_children():
+            if(self.table.item(entry)["values"][0] == int(number)):
+                applications.append(entry)
+        self.table.selection_set(applications)
+        pass
     def __init__(self, root):
         root.geometry("850x600")
         root.title('Administrace')
@@ -170,7 +177,7 @@ class MyApp:
         self.searchFrame = ttk.Frame(root)
         self.searchResetBtn = ttk.Button(self.searchFrame, text="Reset", command=lambda: self.cleanEntry(self.searchEntry))
         self.searchResetBtn.pack(side="right", padx=10)
-        self.searchBtn = ttk.Button(self.searchFrame, text="Vyhledej")
+        self.searchBtn = ttk.Button(self.searchFrame, text="Vyhledej", command=lambda: self.searchApplication(self.searchEntry.get()))
         self.searchBtn.pack(side="right", padx = 10)
         self.searchOptionsFrame = ttk.Frame(self.searchFrame)
         self.searchEntry = ttk.Entry(self.searchOptionsFrame, text="", width=5)
