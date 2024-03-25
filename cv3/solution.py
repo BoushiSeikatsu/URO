@@ -21,9 +21,13 @@ class MyApp:
             self.filloutSchool(self.table.item(selected_item)["values"][3], self.table.item(selected_item)["values"])
             self.filloutBasicInfo(self.table.item(selected_item)["values"])
     def onButtonSaveFormClick(self):
-        print("Save button clicked")
+        self.table.insert('', END, values=(self.nameEntry.get(), self.streetEntry.get(), self.cityEntry.get(),self.pscEntry.get()))
+        self.onButtonResetFormClick()
     def onButtonResetFormClick(self):
-        print("Reset button clicked")
+        self.nameEntry.delete(0,END)
+        self.streetEntry.delete(0,END)
+        self.cityEntry.delete(0,END)
+        self.pscEntry.delete(0,END)
     def createFormWindow(self, root):
         self.formWindow = Toplevel(root)
         self.formWindow.geometry("300x300")
@@ -174,6 +178,18 @@ class MyApp:
                     applications.append(entry)
         self.table.selection_set(applications)
         pass
+    def editApplication(self):
+        if(len(self.table.selection()) > 0): 
+            selectedEntry = self.table.selection()[-1]
+            self.table.item(selectedEntry, values=(self.AFEntryNumber.get(), self.AFEntryDate.get(), self.AFEntryStudent.get(), self.AFEntrySchool.get()))
+        else:
+            pass
+    def deleteApplication(self):
+        if(len(self.table.selection()) > 0): 
+            selectedEntry = self.table.selection()[-1]
+            self.table.delete(selectedEntry)
+        else:
+            pass
     def __init__(self, root):
         root.geometry("850x600")
         root.title('Administrace')
@@ -221,21 +237,21 @@ class MyApp:
         self.table.heading('jmeno_studenta', text='Jméno studenta')
         self.table.heading('jmeno_skoly', text='Název školy')
 
-        self.table.insert('', END, values=("001", "18/03/2024", "Jiří Matonoha", "SPSEI Ostrava"))
-        self.table.insert('', END, values=("002", "18/03/2024", "Ivan Mámdlouhéjméno Matuška","Telekomka Ostrava"))
-        self.table.insert('', END, values=("003", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
-        self.table.insert('', END, values=("004", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
-        self.table.insert('', END, values=("005", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
-        self.table.insert('', END, values=("006", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
-        self.table.insert('', END, values=("007", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
-        self.table.insert('', END, values=("008", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
-        self.table.insert('', END, values=("009", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
-        self.table.insert('', END, values=("010", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
-        self.table.insert('', END, values=("011", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
-        self.table.insert('', END, values=("012", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
-        self.table.insert('', END, values=("013", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
-        self.table.insert('', END, values=("014", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
-        self.table.insert('', END, values=("015", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("1", "18/03/2024", "Jiří Matonoha", "SPSEI Ostrava"))
+        self.table.insert('', END, values=("2", "18/03/2024", "Ivan Mámdlouhéjméno Matuška","Telekomka Ostrava"))
+        self.table.insert('', END, values=("3", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("4", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("5", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("6", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("7", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("8", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("9", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("10", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("11", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("12", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("13", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("14", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
+        self.table.insert('', END, values=("15", "18/03/2024", "Jiří Matonoha","Telekomka Ostrava"))
         
         self.table.bind('<<TreeviewSelect>>', self.item_selected)
         self.table.grid(row=0, column=0, sticky='nsew')
@@ -333,9 +349,9 @@ class MyApp:
         self.controlFrame = ttk.Frame(self.bottomPartFrame, borderwidth = 5)
         self.insertButton = ttk.Button(self.controlFrame, text="Přidat", command=lambda: self.createFormWindow(root))
         self.insertButton.grid(row = 0, column = 0)
-        self.editButton = ttk.Button(self.controlFrame, text="Upravit")
+        self.editButton = ttk.Button(self.controlFrame, text="Upravit", command=self.editApplication)
         self.editButton.grid(row = 0, column = 1)
-        self.deleteButton = ttk.Button(self.controlFrame, text="Odstranit")
+        self.deleteButton = ttk.Button(self.controlFrame, text="Odstranit", command=self.deleteApplication)
         self.deleteButton.grid(row = 0, column = 2)
         self.controlFrame.pack(side="left", anchor="w", fill="both", expand=True)
         self.bottomPartFrame.pack(side = "bottom")
