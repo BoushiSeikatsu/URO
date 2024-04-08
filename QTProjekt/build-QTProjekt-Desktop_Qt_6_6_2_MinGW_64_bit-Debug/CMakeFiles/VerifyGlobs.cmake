@@ -43,6 +43,7 @@ file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "E:/Python Scripts/URO/QTProje
 set(OLD_GLOB
   "E:/Python Scripts/URO/QTProjekt/QTProjekt/main.cpp"
   "E:/Python Scripts/URO/QTProjekt/QTProjekt/mainwindow.cpp"
+  "E:/Python Scripts/URO/QTProjekt/QTProjekt/mytableview.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
@@ -62,6 +63,7 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "E:/Python Scripts/URO/QTProjekt/QTProjekt/*.h")
 set(OLD_GLOB
   "E:/Python Scripts/URO/QTProjekt/QTProjekt/mainwindow.h"
+  "E:/Python Scripts/URO/QTProjekt/QTProjekt/mytableview.h"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

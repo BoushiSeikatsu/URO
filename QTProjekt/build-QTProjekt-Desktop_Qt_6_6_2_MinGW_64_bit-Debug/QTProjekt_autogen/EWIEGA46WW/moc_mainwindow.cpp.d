@@ -119,6 +119,7 @@ E:/Python\ Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-D
   E:/Qt/6.6.2/mingw_64/include/QtCore/qvarlengtharray.h \
   E:/Qt/6.6.2/mingw_64/include/QtCore/qversiontagging.h \
   E:/Qt/6.6.2/mingw_64/include/QtCore/qxptype_traits.h \
+  E:/Qt/6.6.2/mingw_64/include/QtGui/QAction \
   E:/Qt/6.6.2/mingw_64/include/QtGui/QStandardItemModel \
   E:/Qt/6.6.2/mingw_64/include/QtGui/qaction.h \
   E:/Qt/6.6.2/mingw_64/include/QtGui/qbitmap.h \
@@ -155,12 +156,17 @@ E:/Python\ Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-D
   E:/Qt/6.6.2/mingw_64/include/QtGui/qwindowdefs_win.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QCheckBox \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QComboBox \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/QDialog \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/QFormLayout \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QFrame \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QGridLayout \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QHBoxLayout \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QLabel \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/QLayout \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QLineEdit \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QMainWindow \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/QMenu \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/QMenuBar \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QPushButton \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QRadioButton \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QTabWidget \
@@ -174,6 +180,8 @@ E:/Python\ Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-D
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qboxlayout.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qcheckbox.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qcombobox.h \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/qdialog.h \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/qformlayout.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qframe.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qgridlayout.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qlabel.h \
@@ -181,6 +189,8 @@ E:/Python\ Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-D
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qlayoutitem.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qlineedit.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qmainwindow.h \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/qmenu.h \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/qmenubar.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qpushbutton.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qradiobutton.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qrubberband.h \
