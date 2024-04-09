@@ -7,7 +7,9 @@
 #include <QFormLayout>
 #include <QLabel>
 #include <QFrame>
+#include <QMessageBox>
 #include <QHBoxLayout>
+#include <QContextMenuEvent>
 #include <QTableView>
 #include <QLineEdit>
 #include <QPushButton>
@@ -20,11 +22,13 @@
 #include <QMenu>
 #include <QAction>
 #include <QMenuBar>
+#include <QFileDialog>
 #include <QDialog>
 
 
 class MainWindow : public QMainWindow
 {
+private:
     Q_OBJECT
     QStandardItemModel model;
     QTableView* tableView;
@@ -45,6 +49,12 @@ class MainWindow : public QMainWindow
     QAction* openOptions;
     QMenu* aboutMenu;
     QAction* openAbout;
+    QAction* qtInfo;
+
+    QAction* cut_act;
+    QAction* copy_act;
+    QAction* paste_act;
+    QAction* delete_act;
 
     QFrame* searchPart;
     QGridLayout* searchPartLayout;
@@ -74,6 +84,10 @@ class MainWindow : public QMainWindow
     QRadioButton* rbtSchoolTabPartTheory;
     QRadioButton* rbtSchoolTabPartHybrid;
 
+    void createActions();
+    void createMenus();
+    void createTable();
+    void createTabs();
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -85,5 +99,11 @@ public slots:
     void importFile();
     void openOptionsSlot();
     void openAboutSlot();
+    void openQtInfo();
+protected:
+#ifndef QT_NO_CONTEXTMENU
+    void contextMenuEvent(QContextMenuEvent *event) override;
+#endif // QT_NO_CONTEXTMENU
 };
+
 #endif // MAINWINDOW_H

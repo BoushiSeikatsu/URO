@@ -10,23 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(mainWidget);
     mainWidget->setLayout(layout);
     //Menu part
-    fileMenu = menuBar()->addMenu(tr("&Data"));
-    exportData = new QAction(tr("&Export"), this);
-    connect(exportData, &QAction::triggered, this, &MainWindow::exportFile);
-    importData = new QAction(tr("&Import"), this);
-    connect(importData, &QAction::triggered, this, &MainWindow::importFile);
-    fileMenu->addAction(exportData);
-    fileMenu->addAction(importData);
-
-    optionsMenu = menuBar()->addMenu(tr("&Nastavení"));
-    openOptions = new QAction(tr("&Nastavení"), this);
-    connect(openOptions, &QAction::triggered, this, &MainWindow::openOptionsSlot);
-    optionsMenu->addAction(openOptions);
-
-    aboutMenu = menuBar()->addMenu(tr("&Info"));
-    openAbout = new QAction(tr("&Info"));
-    connect(openAbout, &QAction::triggered, this, &MainWindow::openAboutSlot);
-    aboutMenu->addAction(openAbout);
+    createActions();
+    createMenus();
     // Top part search
     searchPart = new QFrame();
     searchPartLayout = new QGridLayout(this);
@@ -40,48 +25,15 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(searchPart, 0,0);
 
     // Data -> Table part
-
-    const int n_columns = 4;
-    QString my_labels[n_columns]={"Číslo přihlášky", "Datum", "Jméno studenta", "Název školy"};
-    QString my_data[4][n_columns]={
-        {"001", "10/03/2024", "Karel Havlíček", "SPSEI Ostrava"},
-        {"002", "11/03/2024", "Jana Nová", "Telekomka Ostrava"},
-        {"003", "12/03/2024", "Petr Černý", "SPSEI Ostrava"},
-        {"004", "13/03/2024", "Filip Novotný", "Telekomka Ostrava"}
-    };
-
-    // Vytvoreni modelu
-
-    QStandardItemModel *model = new QStandardItemModel(0, n_columns, this); // 0 radku, 3 sloupce
-    for(int i = 0; i < n_columns; i++){
-        model->setHeaderData(i, Qt::Horizontal, my_labels[i]);
-    }
-
-    // Pridani dat do modelu
-
-    for(const auto& my_item : my_data )
-    {
-        QList<QStandardItem*> row;
-        for(int i = 0; i < n_columns; i++ )
-        {
-            row.append(new QStandardItem(my_item[i]));
-        }
-        model->appendRow(row);
-    }
-
-    // Zobrazeni modelu pomoci QTableView
-
-    tableView = new QTableView(this);
-    tableView->setModel(model);
-    tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    createTable();
     //setCentralWidget(tableView);
 
     //layout->setAlignment(console, Qt::AlignCenter);
     // Pridani dalsich dat
 
-    QList<QStandardItem*> row(n_columns);
+    /*QList<QStandardItem*> row(n_columns);
     row = {new QStandardItem("004"),new QStandardItem("15/03/2024"), new QStandardItem("Radoslav Socha"), new QStandardItem("Gymnázium Hladnov")};
-    model->appendRow(row);
+    model->appendRow(row);*/
 
     // Odstraneni dat
 
@@ -145,8 +97,80 @@ MainWindow::MainWindow(QWidget *parent)
     connect(tableView, SIGNAL(clicked(QModelIndex)), this, SLOT(onTableClicked(QModelIndex)));
 }
 
-/* slot pro print dat z konkretni bunky */
+void MainWindow::createActions()
+{
+    this->cut_act = new QAction("Vyjmout");
+    this->copy_act = new QAction("Kopírovat");
+    this->paste_act = new QAction("Vložit");
+    this->delete_act = new QAction("Smazat");
 
+    exportData = new QAction(tr("&Export"), this);
+    importData = new QAction(tr("&Import"), this);
+    connect(exportData, &QAction::triggered, this, &MainWindow::exportFile);
+    connect(importData, &QAction::triggered, this, &MainWindow::importFile);
+
+    openOptions = new QAction(tr("&Nastavení"), this);
+    connect(openOptions, &QAction::triggered, this, &MainWindow::openOptionsSlot);
+
+    openAbout = new QAction(tr("&Info"));
+    qtInfo = new QAction(tr("&Qt verze"));
+    connect(openAbout, &QAction::triggered, this, &MainWindow::openAboutSlot);
+    connect(qtInfo, &QAction::triggered, this, &MainWindow::openQtInfo);
+}
+void MainWindow::createMenus()
+{
+    fileMenu = menuBar()->addMenu(tr("&Data"));
+    fileMenu->addAction(exportData);
+    fileMenu->addAction(importData);
+
+    optionsMenu = menuBar()->addMenu(tr("&Nastavení"));
+    optionsMenu->addAction(openOptions);
+
+    aboutMenu = menuBar()->addMenu(tr("&Info"));
+    aboutMenu->addAction(openAbout);
+    aboutMenu->addAction(qtInfo);
+}
+void MainWindow::createTable()
+{
+    const int n_columns = 4;
+    QString my_labels[n_columns]={"Číslo přihlášky", "Datum", "Jméno studenta", "Název školy"};
+    QString my_data[4][n_columns]={
+        {"001", "10/03/2024", "Karel Havlíček", "SPSEI Ostrava"},
+        {"002", "11/03/2024", "Jana Nová", "Telekomka Ostrava"},
+        {"003", "12/03/2024", "Petr Černý", "SPSEI Ostrava"},
+        {"004", "13/03/2024", "Filip Novotný", "Telekomka Ostrava"}
+    };
+
+    // Vytvoreni modelu
+
+    QStandardItemModel *model = new QStandardItemModel(0, n_columns, this); // 0 radku, 3 sloupce
+    for(int i = 0; i < n_columns; i++){
+        model->setHeaderData(i, Qt::Horizontal, my_labels[i]);
+    }
+
+    // Pridani dat do modelu
+
+    for(const auto& my_item : my_data )
+    {
+        QList<QStandardItem*> row;
+        for(int i = 0; i < n_columns; i++ )
+        {
+            row.append(new QStandardItem(my_item[i]));
+        }
+        model->appendRow(row);
+    }
+
+    // Zobrazeni modelu pomoci QTableView
+
+    tableView = new QTableView(this);
+    tableView->setModel(model);
+    tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+}
+/* slot pro print dat z konkretni bunky */
+void MainWindow::createTabs()
+{
+
+}
 void MainWindow::onTableClicked(QModelIndex index)
 {
     if (index.isValid()) {
@@ -167,13 +191,66 @@ void MainWindow::onTableClicked(QModelIndex index)
         ui->txt4->setText(model->index(rowidx , 3).data().toString());*/
     }
 }
+void MainWindow::openQtInfo()
+{
+    QMessageBox::aboutQt(this);
+}
 void MainWindow::exportFile()
 {
+    QString fileName = QFileDialog::getSaveFileName(this,
+                                                    tr("Uložit tabulku"), "",
+                                                    tr("Text file (*.txt);;All Files (*)"));
+    if (fileName.isEmpty())
+        return;
+    else {
+        QFile file(fileName);
+        if (!file.open(QIODevice::WriteOnly)) {
+            QMessageBox::information(this, tr("Unable to open file"),
+                                     file.errorString());
+            return;
+        }
+        QDataStream out(&file);
+        out.setVersion(QDataStream::Qt_6_5);
+        int rowCount = tableView->model()->rowCount();
+        int columnCount = tableView->model()->columnCount();
+        out << rowCount;
+        out << columnCount;
 
+        for(int row = 0; row < rowCount; row++)
+            for(int column = 0; column < columnCount; column++) {
+                out << tableView->model()->index(row , column).data().toString();
+            }
+    }
 }
 void MainWindow::importFile()
 {
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                                    tr("Načíst tabulku"), "",
+                                                    tr("Text file (*.txt);;All Files (*)"));
+    /*if (fileName.isEmpty())
+        return;
+    else {
 
+        QFile file(fileName);
+
+        if (!file.open(QIODevice::ReadOnly)) {
+            QMessageBox::information(this, tr("Unable to open file"),
+                                     file.errorString());
+            return;
+        }
+
+        QDataStream in(&file);
+        in.setVersion(QDataStream::Qt_6_5);
+        int rowCount, columnCount;
+        in >> rowCount;
+        in >> columnCount;
+        for(int row = 0; row < rowCount; row++)
+            for(int column = 0; column < columnCount; column++) {
+                QString item;
+                in >> item;
+                tableView->model()->index(row , column).data() = item;//setItem(row, column, item)
+            }
+    }*/
 }
 void MainWindow::openOptionsSlot()
 {
@@ -203,6 +280,22 @@ void MainWindow::openAboutSlot()
     window -> setLayout ( winLayout ) ;
     window -> exec () ; // modální okno
 }
+#ifndef QT_NO_CONTEXTMENU
+void MainWindow::contextMenuEvent(QContextMenuEvent *event)
+{
+    QMenu menu(this);
+    menu.addAction(this->cut_act);
+    menu.addAction(this->copy_act);
+    menu.addAction(this->paste_act);
+    menu.addSeparator();
+    menu.addAction(this->delete_act);
+    menu.exec(event->globalPos());
+    qInfo() << "Relativní X: " << event->x();
+    qInfo() << "Relativní Y: " << event->y();
+    qInfo() << "Absolutní X: " << event->globalX();
+    qInfo() << "Absolutní y: " << event->globalY();
+}
+#endif // QT_NO_CONTEXTMENU
 MainWindow::~MainWindow()
 {
 }
