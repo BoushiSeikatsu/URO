@@ -136,6 +136,7 @@ E:/Python\ Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-D
   E:/Qt/6.6.2/mingw_64/include/QtCore/qxptype_traits.h \
   E:/Qt/6.6.2/mingw_64/include/QtGui/QAction \
   E:/Qt/6.6.2/mingw_64/include/QtGui/QContextMenuEvent \
+  E:/Qt/6.6.2/mingw_64/include/QtGui/QPixmap \
   E:/Qt/6.6.2/mingw_64/include/QtGui/QStandardItemModel \
   E:/Qt/6.6.2/mingw_64/include/QtGui/QTransform \
   E:/Qt/6.6.2/mingw_64/include/QtGui/qaction.h \
@@ -153,6 +154,7 @@ E:/Python\ Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-D
   E:/Qt/6.6.2/mingw_64/include/QtGui/qinputdevice.h \
   E:/Qt/6.6.2/mingw_64/include/QtGui/qkeysequence.h \
   E:/Qt/6.6.2/mingw_64/include/QtGui/qpaintdevice.h \
+  E:/Qt/6.6.2/mingw_64/include/QtGui/qpainter.h \
   E:/Qt/6.6.2/mingw_64/include/QtGui/qpalette.h \
   E:/Qt/6.6.2/mingw_64/include/QtGui/qpen.h \
   E:/Qt/6.6.2/mingw_64/include/QtGui/qpicture.h \
@@ -184,8 +186,11 @@ E:/Python\ Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-D
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QFileDialog \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QFormLayout \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QFrame \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/QGraphicsScene \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/QGraphicsView \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QGridLayout \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QHBoxLayout \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/QHeaderView \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QLabel \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QLayout \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QLineEdit \
@@ -197,6 +202,7 @@ E:/Python\ Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-D
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QRadioButton \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QTabWidget \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/QTableView \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/QTextEdit \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qabstractbutton.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qabstractitemview.h \
@@ -211,7 +217,10 @@ E:/Python\ Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-D
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qfiledialog.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qformlayout.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qframe.h \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/qgraphicsscene.h \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/qgraphicsview.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qgridlayout.h \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/qheaderview.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qlabel.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qlayout.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qlayoutitem.h \
@@ -223,6 +232,7 @@ E:/Python\ Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-D
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qpushbutton.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qradiobutton.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qrubberband.h \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/qscrollarea.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qsizepolicy.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qslider.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qstyle.h \
@@ -230,6 +240,7 @@ E:/Python\ Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-D
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qtabbar.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qtableview.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qtabwidget.h \
+  E:/Qt/6.6.2/mingw_64/include/QtWidgets/qtextedit.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qtwidgets-config.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qtwidgetsexports.h \
   E:/Qt/6.6.2/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
