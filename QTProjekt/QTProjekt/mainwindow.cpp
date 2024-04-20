@@ -111,16 +111,23 @@ MainWindow::MainWindow(QWidget *parent)
     stuFormWidget->setLayout(fST);
     //tab2_l->addWidget(stuFormWidget);
     infoWrapper_l->addWidget(stuFormWidget, 0, 1);
-
+    cmbSchoolTabPartType = new QComboBox();
+    QStringList list2 = QStringList();
+    list2.append("Střední odborná škola");
+    list2.append("Střední průmyslová škola");
+    list2.append("Gymnázium");
+    list2.append("Učiliště");
+    cmbSchoolTabPartType->insertItems(0, list2);
     fSCH = new QFormLayout() ;
     fSCH -> addRow ("&Název školy:", new QLineEdit () ) ;
-    fSCH -> addRow ("&Má prestiž:", new QLineEdit () ) ;
-    fSCH -> addRow ("&Typ školy:",new QLineEdit() ) ;
+    fSCH -> addRow ("&Má prestiž:", new QCheckBox () ) ;
+    fSCH -> addRow ("&Typ školy:", cmbSchoolTabPartType ) ;
     fSCH -> addRow ("&Počet přihlášek 2023/24:",new QLineEdit() ) ;
     QWidget *schFormWidget = new QWidget;
     schFormWidget->setLayout(fSCH);
     //tab3_l->addWidget(schFormWidget);
     infoWrapper_l->addWidget(schFormWidget, 0, 2);
+    infoWrapper_l->setSpacing(15);
     layout->addWidget(infoWrapper, 2, 0);
     // Spojeni signalu a slotu
     connect(tableView, SIGNAL(clicked(QModelIndex)), this, SLOT(onTableClicked(QModelIndex)));
@@ -133,7 +140,7 @@ MainWindow::MainWindow(QWidget *parent)
     leftSideWrapper = new QFrame();
     leftSideWrapper_l = new QVBoxLayout();
     leftSideWrapper->setLayout(leftSideWrapper_l);
-    leftSideLabel = new QLabel("Nezařazení studenti");
+    leftSideLabel = new QLabel("Odvolaní studenti");
     leftSide = new QTextEdit();
     leftSideWrapper_l->addWidget(leftSideLabel);
     leftSideWrapper_l->addWidget(leftSide);

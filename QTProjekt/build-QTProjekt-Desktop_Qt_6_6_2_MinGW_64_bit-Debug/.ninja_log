@@ -1,100 +1,41 @@
 # ninja log v5
-4	53	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
-1692	12414	7349177164959669	CMakeFiles/QTProjekt.dir/main.cpp.obj	128ea4f09431d6da
-35	311	7349194256757344	QTProjekt_autogen/timestamp	f895197ba4d6d091
-35	311	7349194256757344	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-35	311	7349194256757344	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
-35	311	7349194256757344	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-1699	12389	7349177164877196	CMakeFiles/QTProjekt.dir/QTProjekt_autogen/mocs_compilation.cpp.obj	8315cc49598be5c
-323	11107	7349194364702385	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
-11109	12151	7349194375072971	QTProjekt.exe	15d20c61356e3959
-1271	10784	7342661887009961	CMakeFiles/QTProjekt.dir/mytableview.cpp.obj	93cf7597d9c303f2
-3	76	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
-34	339	7349194758253591	QTProjekt_autogen/timestamp	f895197ba4d6d091
-34	339	7349194758253591	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-34	339	7349194758253591	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
-34	339	7349194758253591	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-351	9317	7349194848075874	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
-9318	9995	7349194854779467	QTProjekt.exe	15d20c61356e3959
-4	53	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
-33	307	7349197260350973	QTProjekt_autogen/timestamp	f895197ba4d6d091
-33	307	7349197260350973	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-33	307	7349197260350973	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
-33	307	7349197260350973	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-4	52	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
-35	343	7349197722756347	QTProjekt_autogen/timestamp	f895197ba4d6d091
-35	343	7349197722756347	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-35	343	7349197722756347	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
-35	343	7349197722756347	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-355	9670	7349197816027794	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
-9671	10978	7349197828937766	QTProjekt.exe	15d20c61356e3959
-4	87	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
-43	1746	7349206900858066	QTProjekt_autogen/timestamp	f895197ba4d6d091
-43	1746	7349206900858066	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-43	1746	7349206900858066	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
-43	1746	7349206900858066	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-1756	15774	7349207042150340	CMakeFiles/QTProjekt.dir/main.cpp.obj	128ea4f09431d6da
-1746	16052	7349207043918283	CMakeFiles/QTProjekt.dir/QTProjekt_autogen/mocs_compilation.cpp.obj	8315cc49598be5c
-1767	16095	7349207045417266	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
-16097	17184	7349207056489683	QTProjekt.exe	15d20c61356e3959
-4	79	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
-41	345	7349207923779807	QTProjekt_autogen/timestamp	f895197ba4d6d091
-41	345	7349207923779807	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-41	345	7349207923779807	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
-41	345	7349207923779807	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-356	9864	7349208018951420	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
-9865	10567	7349208025941186	QTProjekt.exe	15d20c61356e3959
-3	52	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
-33	310	7349208149199350	QTProjekt_autogen/timestamp	f895197ba4d6d091
-33	310	7349208149199350	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-33	310	7349208149199350	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
-33	310	7349208149199350	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-322	9543	7349208241510831	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
-9543	10424	7349208250238922	QTProjekt.exe	15d20c61356e3959
-4	91	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
-81	421	7349210122967315	QTProjekt_autogen/timestamp	f895197ba4d6d091
-81	421	7349210122967315	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-81	421	7349210122967315	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
-81	421	7349210122967315	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-434	10392	7349210222667227	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
-10394	11289	7349210231582629	QTProjekt.exe	15d20c61356e3959
-3	76	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
-35	1698	7349211603460127	QTProjekt_autogen/timestamp	f895197ba4d6d091
-35	1698	7349211603460127	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-35	1698	7349211603460127	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
-35	1698	7349211603460127	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
 1709	15435	7349211742177279	CMakeFiles/QTProjekt.dir/main.cpp.obj	128ea4f09431d6da
+4	86	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
+130	479	7349755763265350	QTProjekt_autogen/timestamp	f895197ba4d6d091
+130	479	7349755763265350	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
+130	479	7349755763265350	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
+130	479	7349755763265350	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
+491	11592	7349755874373433	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
 1699	15469	7349211742449404	CMakeFiles/QTProjekt.dir/QTProjekt_autogen/mocs_compilation.cpp.obj	8315cc49598be5c
-1714	15854	7349211746293424	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
-15854	16775	7349211755479699	QTProjekt.exe	15d20c61356e3959
-3	76	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
-34	332	7349212436649326	QTProjekt_autogen/timestamp	f895197ba4d6d091
-34	332	7349212436649326	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-34	332	7349212436649326	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
-34	332	7349212436649326	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-3	52	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
-34	304	7349212701854674	QTProjekt_autogen/timestamp	f895197ba4d6d091
-34	304	7349212701854674	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-34	304	7349212701854674	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
-34	304	7349212701854674	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-316	9723	7349212795996473	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
-9724	10491	7349212803631724	QTProjekt.exe	15d20c61356e3959
-3	52	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
-33	326	7349214180288275	QTProjekt_autogen/timestamp	f895197ba4d6d091
-33	326	7349214180288275	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-33	326	7349214180288275	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
-33	326	7349214180288275	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-337	10509	7349214281538494	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
-10510	11406	7349214291019972	QTProjekt.exe	15d20c61356e3959
-3	52	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
-34	316	7349214840504314	QTProjekt_autogen/timestamp	f895197ba4d6d091
-34	316	7349214840504314	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-34	316	7349214840504314	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
-34	316	7349214840504314	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-3	50	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
-33	303	7349215061027715	QTProjekt_autogen/timestamp	f895197ba4d6d091
-33	303	7349215061027715	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-33	303	7349215061027715	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
-33	303	7349215061027715	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
-316	9597	7349215153966363	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
-9598	10358	7349215161487274	QTProjekt.exe	15d20c61356e3959
+11594	13408	7349755892453756	QTProjekt.exe	15d20c61356e3959
+1271	10784	7342661887009961	CMakeFiles/QTProjekt.dir/mytableview.cpp.obj	93cf7597d9c303f2
+4	67	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
+49	385	7349757158342918	QTProjekt_autogen/timestamp	f895197ba4d6d091
+49	385	7349757158342918	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
+49	385	7349757158342918	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
+49	385	7349757158342918	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
+398	10794	7349757262416350	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
+10796	11679	7349757271202562	QTProjekt.exe	15d20c61356e3959
+3	77	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
+34	331	7349758060351350	QTProjekt_autogen/timestamp	f895197ba4d6d091
+34	331	7349758060351350	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
+34	331	7349758060351350	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
+34	331	7349758060351350	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
+343	9943	7349758156454176	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
+9944	10678	7349758163731078	QTProjekt.exe	15d20c61356e3959
+4	52	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
+34	318	7349758290011047	QTProjekt_autogen/timestamp	f895197ba4d6d091
+34	318	7349758290011047	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
+34	318	7349758290011047	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
+34	318	7349758290011047	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
+331	9511	7349758381910670	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
+9512	10255	7349758389303280	QTProjekt.exe	15d20c61356e3959
+4	66	0	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	bc2b570aa4fd0edd
+44	2467	7349764614645258	QTProjekt_autogen/timestamp	f895197ba4d6d091
+44	2467	7349764614645258	QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
+44	2467	7349764614645258	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/timestamp	f895197ba4d6d091
+44	2467	7349764614645258	E:/Python Scripts/URO/QTProjekt/build-QTProjekt-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/QTProjekt_autogen/mocs_compilation.cpp	f895197ba4d6d091
+2474	13265	7349764723759792	CMakeFiles/QTProjekt.dir/main.cpp.obj	128ea4f09431d6da
+2467	13269	7349764723789790	CMakeFiles/QTProjekt.dir/QTProjekt_autogen/mocs_compilation.cpp.obj	8315cc49598be5c
+2485	13380	7349764724892260	CMakeFiles/QTProjekt.dir/mainwindow.cpp.obj	144d1379d56587da
+13380	14301	7349764734043858	QTProjekt.exe	15d20c61356e3959

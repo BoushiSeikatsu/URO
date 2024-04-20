@@ -103,11 +103,8 @@ private:
     QLabel* lblStudentTabPartAddress;
     QLineEdit* edtStudentTabPartAddress;
 
-    QLabel* lblSchoolTabPartName;
     QLineEdit* edtSchoolTabPartName;
-    QLabel* lblSchoolTabPartPrestige;
     QCheckBox* chkSchoolTabPartPrestige;
-    QLabel* lblSchoolTabPartType;
     QComboBox* cmbSchoolTabPartType;
     QLabel* lblSchoolTabPartFocus;
     QComboBox* cbxSchoolTabPartFocus;
