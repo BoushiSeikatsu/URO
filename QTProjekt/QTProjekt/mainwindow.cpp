@@ -80,33 +80,47 @@ MainWindow::MainWindow(QWidget *parent)
     //galleryStudent_l->addWidget(viewStudent);
 
 
-    //tab3 = new QFrame();
-    //tab3_l = new QHBoxLayout();
-    //tab3->setLayout(tab3_l);
+    tab3 = new QFrame();
+    tab3_l = new QHBoxLayout();
+    tab3->setLayout(tab3_l);
     //setCentralWidget(tabs);
 
-    //tabs->addTab(tab3,QString("Škola"));
+    tabs->addTab(tab3,QString("Detail"));
 
+    QFrame* detailWrapper = new QFrame();
+    QHBoxLayout* detailWrapper_l = new QHBoxLayout();
+    detailWrapper->setLayout(detailWrapper_l);
+    tab3_l->addWidget(detailWrapper);
 
     infoWrapper = new QFrame();
     infoWrapper_l = new QGridLayout();
+    infoWrapper_l->setAlignment(Qt::AlignHCenter);
+    //infoWrapper_l->setContentsMargins(0, 20, 0, 0);
+    infoWrapper_l->setRowMinimumHeight(0,200);
     infoWrapper->setLayout(infoWrapper_l);
 
     fAF = new QFormLayout() ;
+    fAF->setSizeConstraint(QLayout::SetFixedSize);
     fAF -> addRow ("&Číslo přihlášky:", new QLineEdit () ) ;
+    ((QLineEdit*)this->fAF->itemAt(0, QFormLayout::FieldRole)->widget())->setFixedWidth(50);
     fAF -> addRow ("&Datum:", new QLineEdit () ) ;
-    fAF -> addRow ("&Jméno studenta:",new QLineEdit() ) ;
     fAF -> addRow ("&Název školy:",new QLineEdit() ) ;
     QWidget *appFormWidget = new QWidget;
     appFormWidget->setLayout(fAF);
     //tab1_l->addWidget(appFormWidget);
     infoWrapper_l->addWidget(appFormWidget, 0, 0);
-
+    QRadioButton* radioGenderM = new QRadioButton("M");
+    QRadioButton* radioGenderF = new QRadioButton("Ž");
+    QRadioButton* radioGenderO = new QRadioButton("Ostatní");
     fST = new QFormLayout() ;
+    fST->setSizeConstraint(QLayout::SetFixedSize);
     fST -> addRow ("&Jméno studenta:", new QLineEdit () ) ;
-    fST -> addRow ("&Pohlaví:", new QLineEdit () ) ;//Předělat na radio
-    fST -> addRow ("&Adresa:",new QLineEdit() ) ;
+    fST -> addRow ("&Pohlaví:", radioGenderM ) ;//Předělat na radio
+    fST -> addRow("", radioGenderF);
+    fST -> addRow("", radioGenderO);
+    //fST -> addRow ("&Adresa:",new QLineEdit() ) ;
     fST -> addRow ("&Průměr:",new QLineEdit() ) ;
+    ((QLineEdit*)this->fST->itemAt(2, QFormLayout::FieldRole)->widget())->setFixedWidth(40);
     QWidget *stuFormWidget = new QWidget;
     stuFormWidget->setLayout(fST);
     //tab2_l->addWidget(stuFormWidget);
@@ -118,7 +132,9 @@ MainWindow::MainWindow(QWidget *parent)
     list2.append("Gymnázium");
     list2.append("Učiliště");
     cmbSchoolTabPartType->insertItems(0, list2);
+
     fSCH = new QFormLayout() ;
+    fSCH->setSizeConstraint(QLayout::SetFixedSize);
     fSCH -> addRow ("&Název školy:", new QLineEdit () ) ;
     fSCH -> addRow ("&Má prestiž:", new QCheckBox () ) ;
     fSCH -> addRow ("&Typ školy:", cmbSchoolTabPartType ) ;
@@ -127,7 +143,7 @@ MainWindow::MainWindow(QWidget *parent)
     schFormWidget->setLayout(fSCH);
     //tab3_l->addWidget(schFormWidget);
     infoWrapper_l->addWidget(schFormWidget, 0, 2);
-    infoWrapper_l->setSpacing(15);
+    infoWrapper_l->setSpacing(20);
     layout->addWidget(infoWrapper, 2, 0);
     // Spojeni signalu a slotu
     connect(tableView, SIGNAL(clicked(QModelIndex)), this, SLOT(onTableClicked(QModelIndex)));
@@ -135,6 +151,7 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(tabs,3,0);
     selection = new QFrame();
     selection_l = new QHBoxLayout();
+    selection_l->setSizeConstraint(QLayout::SetFixedSize);
     selection->setLayout(selection_l);
     tab1_l->addWidget(selection, Qt::AlignHCenter);
     leftSideWrapper = new QFrame();
@@ -148,6 +165,7 @@ MainWindow::MainWindow(QWidget *parent)
     rightSideWrapper_l = new QVBoxLayout();
     rightSideWrapper->setLayout(rightSideWrapper_l);
     rightSideChoice = new QComboBox();
+    leftSideWrapper->setContentsMargins(0, 30, 0, 0);
     QStringList list = QStringList();
     list.append("SPSEI Ostrava");
     list.append("Telekomka");
@@ -155,7 +173,7 @@ MainWindow::MainWindow(QWidget *parent)
     rightSideChoice->insertItems(0, list);
     rightSideLabel = new QLabel("Přijatí studenti");
     rightSide = new QTextEdit();
-    tab1_l->addWidget(rightSideChoice);
+    rightSideWrapper_l->addWidget(rightSideChoice);
     rightSideWrapper_l->addWidget(rightSideLabel);
     rightSideWrapper_l->addWidget(rightSide);
     btnWrapper_l = new QVBoxLayout();
@@ -213,11 +231,21 @@ void MainWindow::createTable()
 {
     const int n_columns = 4;
     QString my_labels[n_columns]={"Číslo přihlášky", "Datum", "Jméno studenta", "Název školy"};
-    QString my_data[4][n_columns]={
+    QString my_data[14][n_columns]={
         {"001", "10/03/2024", "Karel Havlíček", "SPSEI Ostrava"},
         {"002", "11/03/2024", "Jana Nová", "Telekomka Ostrava"},
         {"003", "12/03/2024", "Petr Černý", "SPSEI Ostrava"},
-        {"004", "13/03/2024", "Filip Novotný", "Telekomka Ostrava"}
+        {"004", "13/03/2024", "Filip Novotný", "Gymnázium Hladnov"},
+        {"005", "01/03/2024", "Liam Johnson", "Telekomka Ostrava"},
+        {"006", "07/03/2024", "Emma Smith", "Telekomka Ostrava"},
+        {"007", "15/03/2024", "Noah Williams", "SPSEI Ostrava"},
+        {"008", "20/03/2024", "Olivia Brown", "Telekomka Ostrava"},
+        {"009", "25/03/2024", "William Jones", "Telekomka Ostrava"},
+        {"010", "03/03/2024", "Ava Wilson", "Telekomka Ostrava"},
+        {"011", "11/03/2024", "James Taylor", "Telekomka Ostrava"},
+        {"012", "18/03/2024", "Isabella Davies", "SPSEI Ostrava"},
+        {"013", "27/03/2024", "Alexander Evans", "Telekomka Ostrava"},
+        {"014", "05/03/2024", "Sophia Thomas", "Telekomka Ostrava"}
     };
 
     // Vytvoreni modelu
@@ -259,9 +287,9 @@ void MainWindow::onTableClicked(QModelIndex index)
         ((QLineEdit*)widget_item1->widget())->setText(tableView->model()->index(rowidx , 0).data().toString());
         auto widget_item2 = this->fAF->itemAt(1, QFormLayout::FieldRole);
         ((QLineEdit*)widget_item2->widget())->setText(tableView->model()->index(rowidx , 1).data().toString());
-        auto widget_item3 = this->fAF->itemAt(2, QFormLayout::FieldRole);
+        auto widget_item3 = this->fST->itemAt(0, QFormLayout::FieldRole);
         ((QLineEdit*)widget_item3->widget())->setText(tableView->model()->index(rowidx , 2).data().toString());
-        auto widget_item4 = this->fAF->itemAt(3, QFormLayout::FieldRole);
+        auto widget_item4 = this->fAF->itemAt(2, QFormLayout::FieldRole);
         ((QLineEdit*)widget_item4->widget())->setText(tableView->model()->index(rowidx , 3).data().toString());
 
         //studentName->setText(tableView->model()->index(rowidx , 0).data().toString());
