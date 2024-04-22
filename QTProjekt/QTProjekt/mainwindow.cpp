@@ -52,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Notebook
     tabs = new QTabWidget();
     tabs->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    tabs->setFixedHeight(350);
 
     tab1 = new QFrame();
     tab1_l = new QHBoxLayout();
@@ -67,7 +68,8 @@ MainWindow::MainWindow(QWidget *parent)
     tabs->addTab(tab2, QString("Galerie"));
     gallery = new QFrame();
     gallery_l = new QHBoxLayout();
-    tab2_l->addWidget(gallery);
+    gallery_l->setAlignment(Qt::AlignHCenter);
+    tab2_l->addWidget(gallery, Qt::AlignHCenter);
     gallery->setLayout(gallery_l);
     galleryStudent = new QFrame();
     galleryStudent_l = new QVBoxLayout();
@@ -78,17 +80,32 @@ MainWindow::MainWindow(QWidget *parent)
     sceneStudent = new QGraphicsScene();
     viewStudent = new QGraphicsView(sceneStudent);
     sceneStudent->addPixmap(QPixmap(":/student.png"));
-    QPixmap image("E:\\Python Scripts\\URO\\QTProjekt\\QTProjekt\\student.png");
+    QPixmap image("..\\QTProjekt\\student.png");
     image = image.scaled(200,150);
     galleryStudentLabel->setPixmap(image);
     galleryStudent_l->addWidget(tmp);
     galleryStudent_l->addWidget(galleryStudentLabel);
+    gallerySchool= new QFrame();
+    gallerySchool_l = new QVBoxLayout();
+    gallerySchool->setLayout(gallerySchool_l);
+    gallery_l->addWidget(gallerySchool);
+    QLabel* tmp2 = new QLabel("Logo školy");
+    gallerySchoolLabel = new QLabel("Logo školy");
+    sceneSchool = new QGraphicsScene();
+    viewSchool = new QGraphicsView(sceneSchool);
+    sceneSchool->addPixmap(QPixmap(":/spsei_logo.jpg"));
+    QPixmap image2("..\\QTProjekt\\spsei_logo.jpg");
+    image2 = image2.scaled(200,150);
+    gallerySchoolLabel->setPixmap(image2);
+    gallerySchool_l->addWidget(tmp2);
+    gallerySchool_l->addWidget(gallerySchoolLabel);
     //galleryStudent_l->addWidget(viewStudent);
 
 
     tab3 = new QFrame();
     tab3_l = new QHBoxLayout();
     tab3->setLayout(tab3_l);
+
     //setCentralWidget(tabs);
 
     tabs->addTab(tab3,QString("Detail"));
@@ -96,7 +113,26 @@ MainWindow::MainWindow(QWidget *parent)
     QFrame* detailWrapper = new QFrame();
     QHBoxLayout* detailWrapper_l = new QHBoxLayout();
     detailWrapper->setLayout(detailWrapper_l);
-    tab3_l->addWidget(detailWrapper);
+    detailWrapper_l->setAlignment(Qt::AlignHCenter);
+    QFrame* stDetailWrapper = new QFrame();
+    QVBoxLayout* stDetailWrapper_l = new QVBoxLayout();
+    stDetailWrapper->setLayout(stDetailWrapper_l);
+    QFormLayout* stDetailForm = new QFormLayout();
+    stDetailForm -> addRow (new QLabel("Adresa studenta")) ;
+    stDetailForm -> addRow ("&Město:", new QLineEdit () ) ;
+    stDetailForm -> addRow ("&Ulice:", new QLineEdit () ) ;
+    stDetailForm -> addRow ("&PSČ:", new QLineEdit () ) ;
+    QWidget *stAddressFormWidget = new QWidget();
+    stAddressFormWidget->setLayout(stDetailForm);
+    stDetailWrapper_l->addWidget(stAddressFormWidget);
+    detailWrapper_l->addWidget(stDetailWrapper, Qt::AlignHCenter);
+    stDetailForm->setSizeConstraint(QLayout::SetFixedSize);
+    tab3_l->addWidget(detailWrapper, Qt::AlignHCenter);
+    QFrame* schDetailWrapper = new QFrame();
+    QVBoxLayout* schDetailWrapper_l = new QVBoxLayout();
+    schDetailWrapper->setLayout(schDetailWrapper_l);
+    detailWrapper_l->addWidget(schDetailWrapper);
+    tab3_l->setAlignment(detailWrapper, Qt::AlignHCenter);
 
     infoWrapper = new QFrame();
     infoWrapper_l = new QGridLayout();
@@ -114,9 +150,9 @@ MainWindow::MainWindow(QWidget *parent)
     appFormWidget->setLayout(fAF);
     //tab1_l->addWidget(appFormWidget);
     infoWrapper_l->addWidget(appFormWidget, 0, 0);
-    QRadioButton* radioGenderM = new QRadioButton("M");
-    QRadioButton* radioGenderF = new QRadioButton("Ž");
-    QRadioButton* radioGenderO = new QRadioButton("Ostatní");
+    radioGenderM = new QRadioButton("M");
+    radioGenderF = new QRadioButton("Ž");
+    radioGenderO = new QRadioButton("Ostatní");
     fST = new QFormLayout() ;
     fST->setSizeConstraint(QLayout::SetFixedSize);
     fST -> addRow ("&Jméno studenta:", new QLineEdit () ) ;
@@ -182,7 +218,23 @@ MainWindow::MainWindow(QWidget *parent)
     leftSideWrapper_l = new QVBoxLayout();
     leftSideWrapper->setLayout(leftSideWrapper_l);
     leftSideLabel = new QLabel("Odvolaní studenti");
-    leftSide = new QTextEdit();
+    leftSide = new QListView();
+    QStandardItemModel *model = new QStandardItemModel(0, 2, this); // 0 radku,  sloupce
+    // Pridani dat do modelu
+    QString my_data[2][2] = {{"Michal Bílek 123456/1234", "123456/1234"},{"Filip Ostrý 654321/4321", "654321/4321"}};
+    for(const auto& my_item : my_data )
+    {
+        QList<QStandardItem*> row;
+        for(int i = 0; i < 2; i++ )
+        {
+            row.append(new QStandardItem(my_item[i]));
+        }
+        model->appendRow(row);
+    }
+
+    // Zobrazeni modelu pomoci QTableView
+    leftSide->setModel(model);
+    //leftSide = new QTextEdit();
     leftSideWrapper_l->addWidget(leftSideLabel);
     leftSideWrapper_l->addWidget(leftSide);
     rightSideWrapper = new QFrame();
@@ -196,7 +248,24 @@ MainWindow::MainWindow(QWidget *parent)
     list.append("Gymnázium Hladnov");
     rightSideChoice->insertItems(0, list);
     rightSideLabel = new QLabel("Přijatí studenti");
-    rightSide = new QTextEdit();
+    rightSide = new QListView();
+
+    QStandardItemModel *model2 = new QStandardItemModel(0, 2, this); // 0 radku,  sloupce
+    // Pridani dat do modelu
+    QString my_data2[1][2] = {{"Jiří Štverka 133756/0110", "123456/1234"}};
+    for(const auto& my_item : my_data2 )
+    {
+        QList<QStandardItem*> row;
+        for(int i = 0; i < 2; i++ )
+        {
+            row.append(new QStandardItem(my_item[i]));
+        }
+        model2->appendRow(row);
+    }
+
+    // Zobrazeni modelu pomoci QTableView
+    rightSide->setModel(model2);
+
     rightSideWrapper_l->addWidget(rightSideChoice);
     rightSideWrapper_l->addWidget(rightSideLabel);
     rightSideWrapper_l->addWidget(rightSide);
@@ -261,6 +330,9 @@ void MainWindow::resetSearch()
     ((QLineEdit*)widget_item3->widget())->setText("");
     auto widget_item4 = this->fSCH->itemAt(0, QFormLayout::FieldRole);
     ((QLineEdit*)widget_item4->widget())->setText("");
+    this->radioGenderM->setChecked(false);
+    auto widget_item5 = this->fST->itemAt(4, QFormLayout::FieldRole);
+    ((QLineEdit*)widget_item5->widget())->setText("");
 }
 void MainWindow::createAF()
 {
@@ -274,12 +346,34 @@ void MainWindow::createAF()
 }
 void MainWindow::editAF()
 {
-
+    auto rowidx = this->tableView->selectionModel()->currentIndex().row();
+    auto index0 = this->tableView->model()->index(rowidx, 0);
+    auto index1 = this->tableView->model()->index(rowidx, 1);
+    auto index2 = this->tableView->model()->index(rowidx, 2);
+    auto index3 = this->tableView->model()->index(rowidx, 3);
+    auto widget_item1 = this->fAF->itemAt(0, QFormLayout::FieldRole);
+    auto widget_item2 = this->fAF->itemAt(1, QFormLayout::FieldRole);
+    auto widget_item3 = this->fST->itemAt(0, QFormLayout::FieldRole);
+    auto widget_item4 = this->fSCH->itemAt(0, QFormLayout::FieldRole);
+    tableView->model()->setData(index0,((QLineEdit*)widget_item1->widget())->text());
+    tableView->model()->setData(index1,((QLineEdit*)widget_item2->widget())->text());
+    tableView->model()->setData(index2,((QLineEdit*)widget_item3->widget())->text());
+    tableView->model()->setData(index3,((QLineEdit*)widget_item4->widget())->text());
 }
 void MainWindow::deleteAF()
 {
-    int rowidx = this->tableView->selectionModel()->currentIndex().row();
-    ((QStandardItemModel*)this->tableView->model())->removeRow(rowidx);
+    QMessageBox::StandardButton ret_button = QMessageBox::question(this, "Smazat?", "Opravdu chcete záznam smazat?");
+    if(ret_button == QMessageBox::StandardButton::Yes)
+    {
+        int rowidx = this->tableView->selectionModel()->currentIndex().row();
+        ((QStandardItemModel*)this->tableView->model())->removeRow(rowidx);
+    }
+    else if(ret_button == QMessageBox::StandardButton::No)
+    {
+        qInfo("No");
+    }
+
+
 }
 void MainWindow::createMenus()
 {
@@ -339,6 +433,7 @@ void MainWindow::createTable()
     tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     tableView->setModel(model);
     tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 /* slot pro print dat z konkretni bunky */
 void MainWindow::createTabs()
@@ -356,9 +451,11 @@ void MainWindow::onTableClicked(QModelIndex index)
         ((QLineEdit*)widget_item2->widget())->setText(tableView->model()->index(rowidx , 1).data().toString());
         auto widget_item3 = this->fST->itemAt(0, QFormLayout::FieldRole);
         ((QLineEdit*)widget_item3->widget())->setText(tableView->model()->index(rowidx , 2).data().toString());
+        auto widget_item5 = this->fST->itemAt(4, QFormLayout::FieldRole);
+        ((QLineEdit*)widget_item5->widget())->setText("1.25");
         auto widget_item4 = this->fSCH->itemAt(0, QFormLayout::FieldRole);
         ((QLineEdit*)widget_item4->widget())->setText(tableView->model()->index(rowidx , 3).data().toString());
-
+        this->radioGenderM->setChecked(true);
         //studentName->setText(tableView->model()->index(rowidx , 0).data().toString());
         /*ui->txt2->setText(model->index(rowidx , 1).data().toString());
         ui->txt3->setText(model->index(rowidx , 2).data().toString());
@@ -441,9 +538,9 @@ void MainWindow::openAboutSlot()
     author->setReadOnly(true);
     QLineEdit* login = new QLineEdit("DUB0074");
     login->setReadOnly(true);
-    QLineEdit* version = new QLineEdit("0.1");
+    QLineEdit* version = new QLineEdit("1.0");
     version->setReadOnly(true);
-    QLineEdit* edited = new QLineEdit("8/4/2024");
+    QLineEdit* edited = new QLineEdit("22/4/2024");
     edited->setReadOnly(true);
     formLayout -> addRow ("&Autor aplikace:", author ) ;
     formLayout -> addRow ("&Login:", login ) ;

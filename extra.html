@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokročilá administrace</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <style>
+    .gallery {
+      margin-bottom: 20px;
+    }
+    .carousel-control {
+      height: 100%;
+    }
+    .carousel-control-prev {
+      left: 0;
+    }
+    .carousel-control-next {
+      right: 0;
+    }
+    .carousel-item img {
+      /* Add this line to set a fixed height for all images */
+      height: 200px;  /* Adjust height as needed */
+      object-fit: cover;  /* Optional: Scales image to fill container */
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="index.html">URO Projekt - MICHAL DUBA DUB0074</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="index.html">Základní</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Pokročilá</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        <div class="container-md border mt-5 p-3">
+            <h1>Správa studentů</h1>
+            <form>
+                <div class="row ">
+                    <div class="col"></div>
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                        <label for="prijmeni" class="form-label" style="margin-left: 60px;">Škola</label>
+                            <select class="form-select form-select-sm" aria-label=".form-select-lg example" style="width: 300px; margin-left: 60px;">
+                                <option value="" selected>SPSEI Ostrava</option>
+                                <option value="Pepa">Telekomka Ostrava</option>
+                                <option value="Karel">Gymnázium Hladnov</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="row m-3 align-items-center">
+                    <div class="col-md-3 ">
+                        <h3>Odvolaní studenti</h3>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="" id="Anna">
+                                <label class="form-check-label" for="Anna">Anna Pokorná 133765/1234</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="" id="Anna2">
+                                <label class="form-check-label" for="Anna2">Anna Rychlá 133766/2234</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <div class="row m-5">
+                            <button type="button" class="btn btn-primary">></button>
+                        </div>
+                        <div class="row m-5">
+                            <button type="button" class="btn btn-primary"><</button>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <h3>Přijatí studenti</h3>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="" id="Petr">
+                                <label class="form-check-label" for="Petr">Petr Holý 123456/0110</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="" id="Jan">
+                                <label class="form-check-label" for="Jan">Jan Křížek 654321/1001</label>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="container-md border mt-5 p-3">
+            <h1>Galerie</h1>
+            <div class="row">
+                
+                <div class="col-md-4">
+                    <h3>Studenti</h3>
+                  <div id="gallery1" class="carousel slide gallery" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="student.png" class="d-block w-100" alt="Image 1">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="student2.jpeg" class="d-block w-100" alt="Image 2">
+                      </div>
+                      </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#gallery1" data-bs-slide="prev">
+                      <span class="carousel-control-icon fas fa-chevron-left" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#gallery1" data-bs-slide="next">
+                      <span class="carousel-control-icon fas fa-chevron-right" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                    <h3>Loga Škol</h3>
+                    <div id="gallery2" class="carousel slide gallery" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="spsei_logo.jpg" class="d-block w-100" alt="Image 1">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="telekom.png" class="d-block w-100" alt="Image 2">
+                          </div>
+                          </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#gallery2" data-bs-slide="prev">
+                          <span class="carousel-control-icon fas fa-chevron-left" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#gallery2" data-bs-slide="next">
+                          <span class="carousel-control-icon fas fa-chevron-right" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
+                </div>
+                <div class="col-md-4">
+                    <h3>Sponzoři</h3>
+                    <div id="gallery3" class="carousel slide gallery" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="adidog.png" class="d-block w-100" alt="Image 1">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="pumba.png" class="d-block w-100" alt="Image 2">
+                          </div>
+                          </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#gallery3" data-bs-slide="prev">
+                          <span class="carousel-control-icon fas fa-chevron-left" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#gallery3" data-bs-slide="next">
+                          <span class="carousel-control-icon fas fa-chevron-right" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
+                </div>
+              </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

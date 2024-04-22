@@ -17,6 +17,7 @@
 #include <QPushButton>
 #include <QScrollArea>
 #include <QGraphicsScene>
+#include <QListView>
 #include <QGraphicsView>
 #include <QCheckBox>
 #include <QLabel>
@@ -30,6 +31,7 @@
 #include <QFileDialog>
 #include <QDialog>
 #include <QPixmap>
+#include <QStringListModel>
 
 
 class MainWindow : public QMainWindow
@@ -54,12 +56,12 @@ private:
     QFrame* leftSideWrapper;
     QVBoxLayout* leftSideWrapper_l;
     QLabel* leftSideLabel;
-    QTextEdit* leftSide;
+    QListView* leftSide;
     QFrame* rightSideWrapper;
     QVBoxLayout* rightSideWrapper_l;
     QLabel* rightSideLabel;
     QComboBox* rightSideChoice;
-    QTextEdit* rightSide;
+    QListView* rightSide;
     QFrame* btnWrapper;
     QVBoxLayout* btnWrapper_l;
     QPushButton* moveRight;
@@ -72,6 +74,11 @@ private:
     QLabel* galleryStudentLabel;
     QGraphicsScene* sceneStudent;
     QGraphicsView* viewStudent;
+    QVBoxLayout* gallerySchool_l;
+    QFrame* gallerySchool;
+    QLabel* gallerySchoolLabel;
+    QGraphicsScene* sceneSchool;
+    QGraphicsView* viewSchool;
 
     QMenu* fileMenu;
     QAction *exportData;
@@ -123,9 +130,9 @@ private:
     QComboBox* cmbSchoolTabPartType;
     QLabel* lblSchoolTabPartFocus;
     QComboBox* cbxSchoolTabPartFocus;
-    QRadioButton* rbtSchoolTabPartManual;
-    QRadioButton* rbtSchoolTabPartTheory;
-    QRadioButton* rbtSchoolTabPartHybrid;
+    QRadioButton* radioGenderM;
+    QRadioButton* radioGenderF;
+    QRadioButton* radioGenderO;
 
     void createActions();
     void createMenus();
