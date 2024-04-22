@@ -15,6 +15,7 @@
 #include <QTableView>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QScrollArea>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QCheckBox>
@@ -47,6 +48,7 @@ private:
     QHBoxLayout *tab2_l;
     QHBoxLayout* tab3_l;
 
+    QScrollArea* selectionScroll;
     QFrame* selection;
     QHBoxLayout* selection_l;
     QFrame* leftSideWrapper;
@@ -85,8 +87,16 @@ private:
     QAction* paste_act;
     QAction* delete_act;
 
+    QAction* findAF_act;
+    QAction* resetSearch_act;
+
+    QAction* createAF_act;
+    QAction* editAF_act;
+    QAction* deleteAF_act;
+
     QFrame* searchPart;
     QGridLayout* searchPartLayout;
+    QLineEdit* edtsearchPartToFind;
     QPushButton* btnSearchPartMore;
     QPushButton* btnSearchPartFind;
     QPushButton* btnSearchPartReset;
@@ -102,6 +112,11 @@ private:
     QLineEdit* edtStudentTabPartGender;
     QLabel* lblStudentTabPartAddress;
     QLineEdit* edtStudentTabPartAddress;
+    QFrame* crudWrapper;
+    QGridLayout* crudWrapper_l;
+    QPushButton* crudCreate;
+    QPushButton* crudEdit;
+    QPushButton* crudDelete;
 
     QLineEdit* edtSchoolTabPartName;
     QCheckBox* chkSchoolTabPartPrestige;
@@ -128,6 +143,11 @@ public slots:
     void openOptionsSlot();
     void openAboutSlot();
     void openQtInfo();
+    void resetSearch();
+    void findAF();
+    void createAF();
+    void editAF();
+    void deleteAF();
 protected:
 #ifndef QT_NO_CONTEXTMENU
     void contextMenuEvent(QContextMenuEvent *event) override;

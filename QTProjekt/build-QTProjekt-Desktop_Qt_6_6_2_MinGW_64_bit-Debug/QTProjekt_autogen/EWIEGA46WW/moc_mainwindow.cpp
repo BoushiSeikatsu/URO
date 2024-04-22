@@ -48,11 +48,16 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "importFile",
     "openOptionsSlot",
     "openAboutSlot",
-    "openQtInfo"
+    "openQtInfo",
+    "resetSearch",
+    "findAF",
+    "createAF",
+    "editAF",
+    "deleteAF"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[20];
+    uint offsetsAndSizes[30];
     char stringdata0[11];
     char stringdata1[15];
     char stringdata2[1];
@@ -63,6 +68,11 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata7[16];
     char stringdata8[14];
     char stringdata9[11];
+    char stringdata10[12];
+    char stringdata11[7];
+    char stringdata12[9];
+    char stringdata13[7];
+    char stringdata14[9];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -77,7 +87,12 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(56, 10),  // "importFile"
         QT_MOC_LITERAL(67, 15),  // "openOptionsSlot"
         QT_MOC_LITERAL(83, 13),  // "openAboutSlot"
-        QT_MOC_LITERAL(97, 10)   // "openQtInfo"
+        QT_MOC_LITERAL(97, 10),  // "openQtInfo"
+        QT_MOC_LITERAL(108, 11),  // "resetSearch"
+        QT_MOC_LITERAL(120, 6),  // "findAF"
+        QT_MOC_LITERAL(127, 8),  // "createAF"
+        QT_MOC_LITERAL(136, 6),  // "editAF"
+        QT_MOC_LITERAL(143, 8)   // "deleteAF"
     },
     "MainWindow",
     "onTableClicked",
@@ -88,7 +103,12 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "importFile",
     "openOptionsSlot",
     "openAboutSlot",
-    "openQtInfo"
+    "openQtInfo",
+    "resetSearch",
+    "findAF",
+    "createAF",
+    "editAF",
+    "deleteAF"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -100,7 +120,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -108,15 +128,25 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   50,    2, 0x0a,    1 /* Public */,
-       5,    0,   53,    2, 0x0a,    3 /* Public */,
-       6,    0,   54,    2, 0x0a,    4 /* Public */,
-       7,    0,   55,    2, 0x0a,    5 /* Public */,
-       8,    0,   56,    2, 0x0a,    6 /* Public */,
-       9,    0,   57,    2, 0x0a,    7 /* Public */,
+       1,    1,   80,    2, 0x0a,    1 /* Public */,
+       5,    0,   83,    2, 0x0a,    3 /* Public */,
+       6,    0,   84,    2, 0x0a,    4 /* Public */,
+       7,    0,   85,    2, 0x0a,    5 /* Public */,
+       8,    0,   86,    2, 0x0a,    6 /* Public */,
+       9,    0,   87,    2, 0x0a,    7 /* Public */,
+      10,    0,   88,    2, 0x0a,    8 /* Public */,
+      11,    0,   89,    2, 0x0a,    9 /* Public */,
+      12,    0,   90,    2, 0x0a,   10 /* Public */,
+      13,    0,   91,    2, 0x0a,   11 /* Public */,
+      14,    0,   92,    2, 0x0a,   12 /* Public */,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -147,6 +177,16 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         // method 'openAboutSlot'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'openQtInfo'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'resetSearch'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'findAF'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'createAF'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'editAF'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'deleteAF'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -164,6 +204,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 3: _t->openOptionsSlot(); break;
         case 4: _t->openAboutSlot(); break;
         case 5: _t->openQtInfo(); break;
+        case 6: _t->resetSearch(); break;
+        case 7: _t->findAF(); break;
+        case 8: _t->createAF(); break;
+        case 9: _t->editAF(); break;
+        case 10: _t->deleteAF(); break;
         default: ;
         }
     }
@@ -188,13 +233,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 11)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 11;
     }
     return _id;
 }

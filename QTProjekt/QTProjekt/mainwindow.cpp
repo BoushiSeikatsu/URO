@@ -17,12 +17,18 @@ MainWindow::MainWindow(QWidget *parent)
     searchPartLayout = new QGridLayout(this);
     searchPartLayout->setSizeConstraint(QLayout::SetFixedSize);
     searchPartLayout->setAlignment(Qt::AlignRight);
+    edtsearchPartToFind = new QLineEdit();
+    edtsearchPartToFind->setPlaceholderText("Číslo přihlášky");
+    edtsearchPartToFind->setFixedWidth(70);
+    searchPartLayout->addWidget(edtsearchPartToFind, 0, 0);
     btnSearchPartMore = new QPushButton("Více");
-    searchPartLayout->addWidget(btnSearchPartMore, 0, 0);
+    searchPartLayout->addWidget(btnSearchPartMore, 0, 1);
     btnSearchPartFind = new QPushButton("Hledat");
-    searchPartLayout->addWidget(btnSearchPartFind, 0, 1);
+    connect(btnSearchPartFind, &QPushButton::released, this, &MainWindow::findAF);
+    searchPartLayout->addWidget(btnSearchPartFind, 0, 2);
     btnSearchPartReset = new QPushButton("Reset");
-    searchPartLayout->addWidget(btnSearchPartReset, 0, 2);
+    connect(btnSearchPartReset, &QPushButton::released, this, &MainWindow::resetSearch);
+    searchPartLayout->addWidget(btnSearchPartReset, 0, 3);
     searchPart->setLayout(searchPartLayout);
     layout->addWidget(searchPart, 0,0, Qt::AlignRight);
 
@@ -102,9 +108,8 @@ MainWindow::MainWindow(QWidget *parent)
     fAF = new QFormLayout() ;
     fAF->setSizeConstraint(QLayout::SetFixedSize);
     fAF -> addRow ("&Číslo přihlášky:", new QLineEdit () ) ;
-    ((QLineEdit*)this->fAF->itemAt(0, QFormLayout::FieldRole)->widget())->setFixedWidth(50);
+    ((QLineEdit*)this->fAF->itemAt(0, QFormLayout::FieldRole)->widget())->setFixedWidth(70);
     fAF -> addRow ("&Datum:", new QLineEdit () ) ;
-    fAF -> addRow ("&Název školy:",new QLineEdit() ) ;
     QWidget *appFormWidget = new QWidget;
     appFormWidget->setLayout(fAF);
     //tab1_l->addWidget(appFormWidget);
@@ -148,12 +153,31 @@ MainWindow::MainWindow(QWidget *parent)
     // Spojeni signalu a slotu
     connect(tableView, SIGNAL(clicked(QModelIndex)), this, SLOT(onTableClicked(QModelIndex)));
 
-    layout->addWidget(tabs,3,0);
+    crudWrapper = new QFrame();
+    crudWrapper_l = new QGridLayout();
+    crudWrapper->setLayout(crudWrapper_l);
+    crudCreate = new QPushButton("Vytvořit");
+    connect(crudCreate, &QPushButton::released, this, &MainWindow::createAF);
+    crudEdit = new QPushButton("Změnit");
+    connect(crudEdit, &QPushButton::released, this, &MainWindow::editAF);
+    crudDelete = new QPushButton("Smazat");
+    connect(crudDelete, &QPushButton::released, this, &MainWindow::deleteAF);
+    crudWrapper_l->addWidget(crudCreate, 0, 0);
+    crudWrapper_l->addWidget(crudEdit, 0, 1);
+    crudWrapper_l->addWidget(crudDelete, 0, 2);
+    crudWrapper_l->setSizeConstraint(QLayout::SetFixedSize);
+    crudWrapper_l->setAlignment(Qt::AlignRight);
+    layout->addWidget(crudWrapper,3,0, Qt::AlignRight);
+
+    layout->addWidget(tabs,4,0);
+    selectionScroll = new QScrollArea();
     selection = new QFrame();
     selection_l = new QHBoxLayout();
     selection_l->setSizeConstraint(QLayout::SetFixedSize);
     selection->setLayout(selection_l);
-    tab1_l->addWidget(selection, Qt::AlignHCenter);
+    tab1_l->addWidget(selectionScroll, Qt::AlignHCenter);
+    selectionScroll->setWidget(selection);
+    selectionScroll->setAlignment(Qt::AlignHCenter);
     leftSideWrapper = new QFrame();
     leftSideWrapper_l = new QVBoxLayout();
     leftSideWrapper->setLayout(leftSideWrapper_l);
@@ -165,7 +189,7 @@ MainWindow::MainWindow(QWidget *parent)
     rightSideWrapper_l = new QVBoxLayout();
     rightSideWrapper->setLayout(rightSideWrapper_l);
     rightSideChoice = new QComboBox();
-    leftSideWrapper->setContentsMargins(0, 30, 0, 0);
+    leftSideWrapper->setContentsMargins(0, 28, 0, 0);
     QStringList list = QStringList();
     list.append("SPSEI Ostrava");
     list.append("Telekomka");
@@ -213,6 +237,49 @@ void MainWindow::createActions()
     qtInfo = new QAction(tr("&Qt verze"));
     connect(openAbout, &QAction::triggered, this, &MainWindow::openAboutSlot);
     connect(qtInfo, &QAction::triggered, this, &MainWindow::openQtInfo);
+}
+void MainWindow::findAF()
+{
+    QString stringToFind = edtsearchPartToFind->text();
+    if(stringToFind.length() != 0)
+    {
+        int row = atoi(this->edtsearchPartToFind->text().toStdString().c_str());
+        auto index = this->tableView->model()->index(row-1,0);
+        this->tableView->setCurrentIndex(index);
+    }
+}
+void MainWindow::resetSearch()
+{
+    this->edtsearchPartToFind->setText("");
+    auto index = this->tableView->model()->index(0,0);
+    this->tableView->setCurrentIndex(index);
+    auto widget_item1 = this->fAF->itemAt(0, QFormLayout::FieldRole);
+    ((QLineEdit*)widget_item1->widget())->setText("");
+    auto widget_item2 = this->fAF->itemAt(1, QFormLayout::FieldRole);
+    ((QLineEdit*)widget_item2->widget())->setText("");
+    auto widget_item3 = this->fST->itemAt(0, QFormLayout::FieldRole);
+    ((QLineEdit*)widget_item3->widget())->setText("");
+    auto widget_item4 = this->fSCH->itemAt(0, QFormLayout::FieldRole);
+    ((QLineEdit*)widget_item4->widget())->setText("");
+}
+void MainWindow::createAF()
+{
+    auto widget_item1 = this->fAF->itemAt(0, QFormLayout::FieldRole);
+    auto widget_item2 = this->fAF->itemAt(1, QFormLayout::FieldRole);
+    auto widget_item3 = this->fST->itemAt(0, QFormLayout::FieldRole);
+    auto widget_item4 = this->fSCH->itemAt(0, QFormLayout::FieldRole);
+    QList<QStandardItem*> row(4);
+    row = {new QStandardItem(((QLineEdit*)widget_item1->widget())->text()),new QStandardItem(((QLineEdit*)widget_item2->widget())->text()), new QStandardItem(((QLineEdit*)widget_item3->widget())->text()), new QStandardItem(((QLineEdit*)widget_item4->widget())->text())};
+    ((QStandardItemModel*)this->tableView->model())->appendRow(row);
+}
+void MainWindow::editAF()
+{
+
+}
+void MainWindow::deleteAF()
+{
+    int rowidx = this->tableView->selectionModel()->currentIndex().row();
+    ((QStandardItemModel*)this->tableView->model())->removeRow(rowidx);
 }
 void MainWindow::createMenus()
 {
@@ -289,7 +356,7 @@ void MainWindow::onTableClicked(QModelIndex index)
         ((QLineEdit*)widget_item2->widget())->setText(tableView->model()->index(rowidx , 1).data().toString());
         auto widget_item3 = this->fST->itemAt(0, QFormLayout::FieldRole);
         ((QLineEdit*)widget_item3->widget())->setText(tableView->model()->index(rowidx , 2).data().toString());
-        auto widget_item4 = this->fAF->itemAt(2, QFormLayout::FieldRole);
+        auto widget_item4 = this->fSCH->itemAt(0, QFormLayout::FieldRole);
         ((QLineEdit*)widget_item4->widget())->setText(tableView->model()->index(rowidx , 3).data().toString());
 
         //studentName->setText(tableView->model()->index(rowidx , 0).data().toString());
